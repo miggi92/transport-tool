@@ -10,6 +10,7 @@ DATA:
   gv_keep_date    TYPE sy-datum,
   gt_import_queue TYPE STANDARD TABLE OF tmsbuffer WITH HEADER LINE,
   gt_deleting_tr  TYPE stms_tr_requests,
+  gs_log          TYPE tpalog,
   gv_system       TYPE tmssysnam.
 
 PARAMETERS:
@@ -73,7 +74,7 @@ START-OF-SELECTION.
   LOOP AT gt_import_queue[] ASSIGNING FIELD-SYMBOL(<gs_import_queue>).
     SELECT SINGLE *                           "#EC CI_ALL_FIELDS_NEEDED
         FROM tpalog
-        INTO @DATA(gs_log)
+        INTO @gs_log
         WHERE trkorr = @<gs_import_queue>-trkorr
           AND trstep = '!'
           AND tarsystem = @gv_system.                   "#EC CI_GENBUFF
@@ -112,7 +113,7 @@ START-OF-SELECTION.
     ENDIF.
 
     IF sy-subrc <> 0.
-     MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-       WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     ENDIF.
   ENDIF.
