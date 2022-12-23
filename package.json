@@ -1,0 +1,18 @@
+{
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "unit": "rm -rf output && abap_transpile abap_transpile.json && echo RUNNING && node output/index.mjs",
+    "test": "npm run unit",
+    "abaplint": "abaplint --format codeframe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github:miggi92/transport-tool"
+  },
+  "devDependencies": {
+    "@abaplint/cli": "^2.91.3",
+    "@abaplint/runtime": "^2.0.43",
+    "@abaplint/transpiler-cli": "^2.0.43"
+  }
+}
