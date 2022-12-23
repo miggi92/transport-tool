@@ -3,7 +3,7 @@
 
 ## Documentation
 
-Exact documentation can be found [Documentation](./docs/index.md)
+Exact documentation can be found [here](./docs/index.md).
 
 ## Dependencies
 
